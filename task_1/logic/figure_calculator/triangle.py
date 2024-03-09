@@ -1,47 +1,8 @@
 from statistics import median
 
-import math
 from task_1.helpers.figure_types import FigureTypes
 from task_1.helpers.triangle_types import TriangleTypes
-from abc import ABC, abstractmethod
-
-
-class FigureABC(ABC):
-    __figure_type: FigureTypes
-    __area: float
-
-    def __init__(self, figure_type: FigureTypes, area: float):
-        self.__figure_type = figure_type
-        self.__area = area
-
-    def get_area(self): return self.__area
-
-    @abstractmethod
-    def __doc__(self):
-        return f'Figure: {self.__figure_type.name}; \nArea: {self.__area}; \n'
-
-
-class Circular(FigureABC):
-    __PI: float
-    __radius: float
-
-    def __init__(self, radius: float):
-        if radius <= 0:
-            raise ValueError("Radius must be positive")
-
-        self.__PI = math.pi
-        self.__radius = radius
-
-        area = self.__PI * self.__radius ** 2
-
-        super().__init__(FigureTypes.CIRCULAR, area)
-
-        pass
-
-    def __doc__(self):
-        result_str = super().__doc__()
-        result_str += f'Radius: {self.__radius};'
-        return result_str
+from task_1.logic.figure_calculator.figure import FigureABC
 
 
 class Triangle(FigureABC):
@@ -62,7 +23,7 @@ class Triangle(FigureABC):
 
         for i, side in enumerate(self.__sides_l):
             if side <= 0:
-                raise ValueError(f"side_{i+1} must be > 0")
+                raise ValueError(f"side_{i + 1} must be > 0")
 
         area = -1
 
@@ -96,7 +57,6 @@ class Triangle(FigureABC):
                     super().__init__(FigureTypes.TRIANGLE, -1)
                     return
 
-
             self.__triangle_type = TriangleTypes.STANDARD
 
             self.__s = (self.__a_side + self.__b_side + self.__c_or_hypotenuse_side) / 2
@@ -107,6 +67,9 @@ class Triangle(FigureABC):
 
         super().__init__(FigureTypes.TRIANGLE, area)
 
+    def get_triangle_type(self):
+        return self.__triangle_type.name
+
     def __doc__(self):
         result_str = super().__doc__()
         result_str += f'Triangle type: {self.__triangle_type.name}'
@@ -115,4 +78,3 @@ class Triangle(FigureABC):
             result_str += f'\nHeight: {self.__height};'
 
         return result_str
-
