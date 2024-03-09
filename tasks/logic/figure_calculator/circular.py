@@ -1,7 +1,7 @@
 import math
 
-from task_1.helpers.figure_types import FigureTypes
-from task_1.logic.figure_calculator.figure import FigureABC
+from tasks.helpers.enums.figure_types import FigureTypes
+from tasks.logic.figure_calculator.figure import FigureABC
 
 
 class Circular(FigureABC):

@@ -1,4 +1,4 @@
-from task_1.helpers.figure_types import FigureTypes
+from tasks.helpers.enums.figure_types import FigureTypes
 from abc import ABC, abstractmethod
 
 

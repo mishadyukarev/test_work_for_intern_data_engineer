@@ -1,8 +1,8 @@
 from statistics import median
 
-from task_1.helpers.figure_types import FigureTypes
-from task_1.helpers.triangle_types import TriangleTypes
-from task_1.logic.figure_calculator.figure import FigureABC
+from tasks.helpers.enums.figure_types import FigureTypes
+from tasks.helpers.enums.triangle_types import TriangleTypes
+from tasks.logic.figure_calculator.figure import FigureABC
 
 
 class Triangle(FigureABC):
